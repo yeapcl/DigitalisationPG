@@ -1,0 +1,167 @@
+# Deployment Guide
+
+This guide will help you deploy your modern landing page to various hosting platforms. Follow the steps for your preferred hosting option.
+
+## Table of Contents
+- [GitHub Pages](#github-pages)
+- [Netlify](#netlify)
+- [Vercel](#vercel)
+- [Shared Hosting](#shared-hosting)
+- [Custom Domain Setup](#custom-domain-setup)
+
+## GitHub Pages
+
+GitHub Pages is a free hosting service that takes files directly from your GitHub repository.
+
+### Steps:
+
+1. **Push your code to GitHub**
+   ```bash
+   git add .
+   git commit -m "Initial commit"
+   git push origin main
+   ```
+
+2. **Enable GitHub Pages**
+   - Go to your repository on GitHub
+   - Click on "Settings"
+   - Scroll down to "GitHub Pages" section
+   - Select the branch you want to deploy (usually `main`)
+   - Click "Save"
+
+3. **Access Your Website**
+   - Your site will be available at `https://yourusername.github.io/repository-name/`
+   - GitHub will provide the link in the GitHub Pages section
+
+## Netlify
+
+Netlify is a powerful platform for deploying static websites with continuous deployment.
+
+### Steps:
+
+1. **Create a Netlify account**
+   - Sign up at [netlify.com](https://www.netlify.com/)
+
+2. **Deploy from Git**
+   - Click "New site from Git"
+   - Connect to your GitHub account
+   - Select your repository
+   - Configure build settings (not needed for this project - just leave defaults)
+   - Click "Deploy site"
+
+3. **Access Your Website**
+   - Netlify will provide a random subdomain (e.g., `your-site-123456.netlify.app`)
+   - You can change this in site settings
+
+## Vercel
+
+Vercel is another excellent platform for frontend deployment.
+
+### Steps:
+
+1. **Create a Vercel account**
+   - Sign up at [vercel.com](https://vercel.com/)
+
+2. **Install Vercel CLI (optional)**
+   ```bash
+   npm i -g vercel
+   ```
+
+3. **Deploy from Dashboard**
+   - Click "Import Project"
+   - Import from your GitHub repository
+   - Configure project settings (defaults work fine for this project)
+   - Click "Deploy"
+
+4. **Alternative: Deploy from CLI**
+   ```bash
+   vercel
+   ```
+
+5. **Access Your Website**
+   - Vercel will provide a domain (e.g., `your-project.vercel.app`)
+
+## Shared Hosting
+
+If you're using traditional shared hosting like cPanel:
+
+### Steps:
+
+1. **Prepare your files**
+   - Make sure all files are ready in your local project folder
+
+2. **Access your hosting panel**
+   - Log in to your hosting control panel (usually cPanel)
+
+3. **Upload files**
+   - Use File Manager or FTP to upload all files to your public_html directory
+   - If you want to use a subdirectory, create one and upload files there
+
+4. **Access Your Website**
+   - Your site will be available at your domain or subdomain
+
+## Custom Domain Setup
+
+### For GitHub Pages:
+
+1. **Add a CNAME file**
+   - Create a file named `CNAME` in your repository root
+   - Add your domain name (e.g., `yourdomain.com`) to this file
+
+2. **Configure DNS**
+   - Go to your domain registrar
+   - Add an A record pointing to GitHub's IP addresses:
+     ```
+     185.199.108.153
+     185.199.109.153
+     185.199.110.153
+     185.199.111.153
+     ```
+   - Or add a CNAME record for a subdomain (e.g., `www`) pointing to `yourusername.github.io`
+
+3. **Verify in GitHub**
+   - In your repository settings, add your custom domain
+   - Check "Enforce HTTPS" if available
+
+### For Netlify/Vercel:
+
+1. **Add domain in dashboard**
+   - Go to site settings
+   - Click "Add custom domain"
+   - Enter your domain name
+
+2. **Configure DNS**
+   - Either update your DNS settings at your registrar
+   - Or use Netlify/Vercel as your DNS provider (recommended for easier setup)
+
+3. **Enable HTTPS**
+   - Both platforms provide free SSL certificates through Let's Encrypt
+   - This is usually automatic, but ensure it's enabled in settings
+
+## Troubleshooting
+
+- **404 Errors**: Ensure your file paths are correct and the main file is named `index.html`
+- **CSS/JS Not Loading**: Check for relative path issues, especially when deploying to subdirectories
+- **Custom Domain Not Working**: DNS changes can take 24-48 hours to propagate
+
+## Performance Optimization
+
+After deployment, check your site's performance:
+
+1. **Use Lighthouse**
+   - Open Chrome DevTools
+   - Go to the Lighthouse tab
+   - Run an audit
+
+2. **Consider Additional Optimizations**
+   - Compress images further
+   - Minify CSS and JavaScript
+   - Add caching headers
+
+## Need Help?
+
+If you encounter any issues, check the documentation for your hosting provider:
+
+- [GitHub Pages Documentation](https://docs.github.com/en/pages)
+- [Netlify Documentation](https://docs.netlify.com/)
+- [Vercel Documentation](https://vercel.com/docs)
